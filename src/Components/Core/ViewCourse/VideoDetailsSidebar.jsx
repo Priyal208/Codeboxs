@@ -6,8 +6,8 @@ import { useLocation, useNavigate, useParams } from "react-router-dom"
 
 import IconBtn from "../../common/IconBtn"
 
-export default function VideoDetailsSidebar({ setReviewModal }) {
-  const [activeStatus, setActiveStatus] = useState("")
+export default function VideoDetailsSidebar({ setReviewModal }) { 
+  const [activeStatus, setActiveStatus] = useState("") 
   const [videoBarActive, setVideoBarActive] = useState("")
   const navigate = useNavigate()
   const location = useLocation()
@@ -21,15 +21,16 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
 
   useEffect(() => {
     ;(() => {
-      if (!courseSectionData.length) return
+      if (!courseSectionData) return
       const currentSectionIndx = courseSectionData.findIndex(
         (data) => data._id === sectionId
       )
       const currentSubSectionIndx = courseSectionData?.[
         currentSectionIndx
-      ]?.subSection.findIndex((data) => data._id === subSectionId)
+      ]?.SubSection.findIndex((data) => data._id === subSectionId)
+      
       const activeSubSectionId =
-        courseSectionData[currentSectionIndx]?.subSection?.[
+        courseSectionData?.[currentSectionIndx]?.subSection?.[
           currentSubSectionIndx
         ]?._id
       setActiveStatus(courseSectionData?.[currentSectionIndx]?._id)
@@ -97,7 +98,7 @@ export default function VideoDetailsSidebar({ setReviewModal }) {
               {/* Sub Sections */}
               {activeStatus === course?._id && (
                 <div className="transition-[height] duration-500 ease-in-out">
-                  {course.subSection.map((topic, i) => (
+                  {course.SubSection.map((topic, i) => (
                     <div
                       className={`flex gap-3  px-5 py-2 ${
                         videoBarActive === topic._id

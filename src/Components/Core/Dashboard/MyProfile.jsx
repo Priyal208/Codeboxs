@@ -10,7 +10,7 @@ export default function MyProfile() {
   const navigate = useNavigate()
   useEffect(() => {
     console.log("User state in MyProfile:", user);
-  }, [user]);
+  }, [user]); 
       
   return (
     <>

@@ -16,7 +16,7 @@ const profileSlice = createSlice({
             state.loading = action.payload;
         },
     },
-});
+}); 
 
 
 export const {setUser, setLoading} = profileSlice.actions;

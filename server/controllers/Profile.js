@@ -7,7 +7,7 @@ const CourseProgress = require("../models/CourseProgress")
 require('dotenv').config();
 const Profile = require("../models/Profile")
  
-exports.updateProfile = async(req,res) => {
+exports.updateProfile = async(req,res) => { 
     try {
         const {dateOfBirth="", about="", contactNumber, gender, firstName, lastName} = req.body;
         const id = req.user.id;
@@ -18,7 +18,7 @@ exports.updateProfile = async(req,res) => {
             });
         }
 
-        const userDetails = await User.findById(id);
+        const userDetails = await User.findById(id).populate("additionalDetails");
         const profileId = userDetails.additionalDetails;
         const  profileDetails = await Profile.findById(profileId);
 
@@ -28,7 +28,7 @@ exports.updateProfile = async(req,res) => {
         profileDetails.about = about;
         profileDetails.gender = gender;
         profileDetails.contactNumber = contactNumber;
-
+       
         await profileDetails.save();
         await userDetails.save();
 

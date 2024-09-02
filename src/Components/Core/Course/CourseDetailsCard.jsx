@@ -17,7 +17,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
   const dispatch = useDispatch()
 
   const {
-    thumbnail: ThumbnailImage,
+    thumbNail: thumbNail,
     price: CurrentPrice,
     _id: courseId,
   } = course
@@ -55,7 +55,7 @@ function CourseDetailsCard({ course, setConfirmationModal, handleBuyCourse }) {
       >
         {/* Course Image */}
         <img
-          src={ThumbnailImage}
+          src={thumbNail}
           alt={course?.courseName}
           className="max-h-[300px] min-h-[180px] w-[400px] overflow-hidden rounded-2xl object-cover md:max-w-full"
         />

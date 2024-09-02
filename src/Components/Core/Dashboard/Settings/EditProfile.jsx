@@ -13,7 +13,7 @@ export default function EditProfile() {
   const navigate = useNavigate()
   const dispatch = useDispatch() 
 
-  const {
+  const { 
     register,
     handleSubmit,
     formState: { errors },

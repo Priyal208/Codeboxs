@@ -13,21 +13,30 @@ export default function UpdatePassword() {
 
   const [showOldPassword, setShowOldPassword] = useState(false)
   const [showNewPassword, setShowNewPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
+    getValues,
   } = useForm()
 
   const submitPasswordForm = async (data) => {
-    // console.log("password Data - ", data)
+    console.log("password Data - ", data)
     try {
       await changePassword(token, data)
+      // Optionally, navigate to another page after success
+      navigate("/dashboard/my-profile")
     } catch (error) {
       console.log("ERROR MESSAGE - ", error.message)
     }
   }
+
+  // Watch password fields for validation
+  const newPassword = watch("newPassword")
+  const confirmPassword = watch("confirmPassword")
 
   return (
     <>
@@ -91,13 +100,44 @@ export default function UpdatePassword() {
                 </span>
               )}
             </div>
+            <div className="relative flex flex-col gap-2 lg:w-[48%]">
+              <label htmlFor="confirmPassword" className="lable-style">
+                Confirm New Password
+              </label>
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="Confirm New Password"
+                className="form-style"
+                {...register("confirmPassword", {
+                  required: true,
+                  validate: value =>
+                    value === getValues("newPassword") || "Passwords do not match",
+                })}
+              />
+              <span
+                onClick={() => setShowConfirmPassword((prev) => !prev)}
+                className="absolute right-3 top-[38px] z-[10] cursor-pointer"
+              >
+                {showConfirmPassword ? (
+                  <AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF" />
+                ) : (
+                  <AiOutlineEye fontSize={24} fill="#AFB2BF" />
+                )}
+              </span>
+              {errors.confirmPassword && (
+                <span className="-mt-1 text-[12px] text-caribbeangreen-100">
+                  {errors.confirmPassword.message}
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex justify-end gap-2">
           <button
-            onClick={() => {
-              navigate("/dashboard/my-profile")
-            }}
+            type="button"
+            onClick={() => navigate("/dashboard/my-profile")}
             className="cursor-pointer rounded-md bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"
           >
             Cancel

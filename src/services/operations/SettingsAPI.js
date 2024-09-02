@@ -59,7 +59,7 @@ export function updateProfile(token, formData) {
         ? response.data.data.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`
       dispatch(
-        setUser({ ...response.data.updatedUserDetails, image: userImage })
+        setUser({ ...response.data.data, image: userImage })
       )
       toast.success("Profile Updated Successfully")
     } catch (error) {
@@ -67,7 +67,7 @@ export function updateProfile(token, formData) {
       toast.error("Could Not Update Profile")
     }
     toast.dismiss(toastId)
-  }
+  } 
 }
 
 export async function changePassword(token, formData) {

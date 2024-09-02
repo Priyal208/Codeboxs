@@ -256,7 +256,7 @@ exports.getFullCourseDetails = async (req, res) => {
         }, 
       })
       .populate("category")
-      .populate("ratingandreview")
+      //.populate("ratingandreview")
       .populate({
         path: "courseContent",
         populate: {
@@ -288,7 +288,7 @@ exports.getFullCourseDetails = async (req, res) => {
 
     let totalDurationInSeconds = 0
     courseDetails.courseContent.forEach((content) => {
-      content.subSection.forEach((subSection) => {
+      content.SubSection.forEach((subSection) => {
         const timeDurationInSeconds = parseInt(subSection.timeDuration)
         totalDurationInSeconds += timeDurationInSeconds
       })

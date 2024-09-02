@@ -70,11 +70,13 @@ function CourseDetails() {
   // Total number of lectures
   const [totalNoOfLectures, setTotalNoOfLectures] = useState(0)
   useEffect(() => {
+    console.log(response);
     let lectures = 0
     response?.courseDetails?.courseContent?.forEach((sec) => {
       lectures += sec?.SubSection?.length || 0
     })
     setTotalNoOfLectures(lectures)
+
   }, [response])
 
   if (loading || !response) {
@@ -108,7 +110,9 @@ function CourseDetails() {
     createdAt,
   } = response?.courseDetails
 
-  const handleBuyCourse = () => {
+
+
+  const handleBuyCourse = () => { 
     if (token) {
       buyCourse(token, [courseId], user, navigate, dispatch)
       return
@@ -236,7 +240,7 @@ function CourseDetails() {
             <div className="py-4">
               {courseContent?.map((course, index) => (
                 <CourseAccordionBar
-                  course={course}
+                 course={course}
                   key={index}
                   isActive={isActive}
                   handleActive={handleActive}

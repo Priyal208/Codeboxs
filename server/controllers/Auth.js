@@ -220,9 +220,10 @@ catch(error){
     })
 }
 }
-
+ 
 exports.changePassword = async(req,res) => {
-    const {email,oldPassword,newPassword,confirmPassword} = req.body;
+    try {
+        const {oldPassword,newPassword,confirmPassword} = req.body;
     if(newPassword!==confirmPassword){
         return res.json({
             success:false,
@@ -231,7 +232,8 @@ exports.changePassword = async(req,res) => {
     }
 
     const hashedPassword = await bcrypt.hash(newPassword,10);
-    const user = await User.findOne({email});
+    const user = await User.findById(req.user.id);
+    const email = user.email;
     if(bcrypt.compare(oldPassword,user.password)){
         await User.findOneAndUpdate(
             {email:email},
@@ -244,5 +246,17 @@ exports.changePassword = async(req,res) => {
             success:false,
             message:"Old pass is incorrect",
         });
+    }
+    return res.status(200).json({
+        message: "User is registered successfully",
+        success: true,
+        user
+    });
+    } catch (error) {
+        console.log(error);
+    return res.status(500).json({
+        success:false,
+        message:"error coccured"
+    })
     }
 }

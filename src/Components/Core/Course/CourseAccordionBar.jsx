@@ -31,7 +31,7 @@ export default function CourseAccordionBar({ course, isActive, handleActive }) {
                 isActive.includes(course._id) ? "rotate-180" : "rotate-0"
               }
             >
-              <AiOutlineDown />
+              <AiOutlineDown /> 
             </i>
             <p>{course?.sectionName}</p>
           </div>

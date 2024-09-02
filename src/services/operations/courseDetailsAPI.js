@@ -342,7 +342,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
       "POST",
       GET_FULL_COURSE_DETAILS_AUTHENTICATED,
       {
-        courseId,
+        courseId, 
       },
       {
         Authorisation: `Bearer ${token}`,
