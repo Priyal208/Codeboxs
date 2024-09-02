@@ -62,7 +62,7 @@ const VideoDetails = () => {
 
     if (currentSectionIndx === -1) return false;
 
-    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.subSection?.findIndex((data) => data._id === subSectionId);
+    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.SubSection?.findIndex((data) => data._id === subSectionId);
 
     if (currentSubSectionIndx === -1) return false;
 
@@ -78,17 +78,17 @@ const VideoDetails = () => {
 
     if (currentSectionIndx === -1) return;
 
-    const noOfSubsections = courseSectionData[currentSectionIndx]?.subSection?.length || 0;
-    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.subSection?.findIndex((data) => data._id === subSectionId);
+    const noOfSubsections = courseSectionData[currentSectionIndx]?.SubSection?.length || 0;
+    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.SubSection?.findIndex((data) => data._id === subSectionId);
 
     if (currentSubSectionIndx === -1) return;
 
     if (currentSubSectionIndx !== noOfSubsections - 1) {
-      const nextSubSectionId = courseSectionData[currentSectionIndx].subSection[currentSubSectionIndx + 1]._id;
+      const nextSubSectionId = courseSectionData[currentSectionIndx].SubSection[currentSubSectionIndx + 1]._id;
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`);
     } else if (currentSectionIndx < courseSectionData.length - 1) {
       const nextSectionId = courseSectionData[currentSectionIndx + 1]._id;
-      const nextSubSectionId = courseSectionData[currentSectionIndx + 1].subSection[0]._id;
+      const nextSubSectionId = courseSectionData[currentSectionIndx + 1].SubSection[0]._id;
       navigate(`/view-course/${courseId}/section/${nextSectionId}/sub-section/${nextSubSectionId}`);
     }
   };
@@ -102,8 +102,8 @@ const VideoDetails = () => {
 
     if (currentSectionIndx === -1) return false;
 
-    const noOfSubsections = courseSectionData[currentSectionIndx]?.subSection?.length || 0;
-    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.subSection?.findIndex((data) => data._id === subSectionId);
+    const noOfSubsections = courseSectionData[currentSectionIndx]?.SubSection?.length || 0;
+    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.SubSection?.findIndex((data) => data._id === subSectionId);
 
     if (currentSubSectionIndx === -1) return false;
 
@@ -119,17 +119,17 @@ const VideoDetails = () => {
 
     if (currentSectionIndx === -1) return;
 
-    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.subSection?.findIndex((data) => data._id === subSectionId);
+    const currentSubSectionIndx = courseSectionData[currentSectionIndx]?.SubSection?.findIndex((data) => data._id === subSectionId);
 
     if (currentSubSectionIndx === -1) return;
 
     if (currentSubSectionIndx !== 0) {
-      const prevSubSectionId = courseSectionData[currentSectionIndx].subSection[currentSubSectionIndx - 1]._id;
+      const prevSubSectionId = courseSectionData[currentSectionIndx].SubSection[currentSubSectionIndx - 1]._id;
       navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${prevSubSectionId}`);
     } else if (currentSectionIndx > 0) {
       const prevSectionId = courseSectionData[currentSectionIndx - 1]._id;
-      const prevSubSectionLength = courseSectionData[currentSectionIndx - 1]?.subSection?.length || 0;
-      const prevSubSectionId = courseSectionData[currentSectionIndx - 1].subSection[prevSubSectionLength - 1]._id;
+      const prevSubSectionLength = courseSectionData[currentSectionIndx - 1]?.SubSection?.length || 0;
+      const prevSubSectionId = courseSectionData[currentSectionIndx - 1].SubSection[prevSubSectionLength - 1]._id;
       navigate(`/view-course/${courseId}/section/${prevSectionId}/sub-section/${prevSubSectionId}`);
     }
   };
